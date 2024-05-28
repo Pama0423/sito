@@ -1,41 +1,32 @@
 let cart = [];
 
-function addToCart(productId) {
-    const product = {
-        id: productId,
-        name: document.querySelector(.product[data-id="${productId}"] h3).textContent,
-        price: parseFloat(document.querySelector(.product[data-id="${productId}"] p).textContent.replace('$', ''))
-    };
-    cart.push(product);
-    alert(${product.name} has been added to your cart!);
+function addToCart(product, price) {
+    cart.push({ product, price });
     updateCart();
 }
 
 function updateCart() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    cartItemsContainer.innerHTML = '';
-    let totalPrice = 0;
-    
-    cart.forEach((product, index) => {
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-        cartItem.innerHTML = `
-            <h3>${product.name}</h3>
-            <p>$${product.price.toFixed(2)}</p>
-            <button onclick="removeFromCart(${index})">Remove</button>
-        `;
-        cartItemsContainer.appendChild(cartItem);
-        totalPrice += product.price;
+    const cartItems = document.getElementById('cartItems');
+    cartItems.innerHTML = '';
+    cart.forEach(item => {
+        const div = document.createElement('div');
+        div.textContent = `${item.product} - $${item.price}`;
+        cartItems.appendChild(div);
     });
-    
-    document.getElementById('total-price').textContent = Total: $${totalPrice.toFixed(2)};
 }
 
-function removeFromCart(index) {
-    cart.splice(index, 1);
+function proceedToCheckout() {
+    document.getElementById('products').style.display = 'none';
+    document.getElementById('cart').style.display = 'none';
+    document.getElementById('checkout').style.display = 'block';
+}
+
+document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    alert('Order placed successfully!');
+    cart = [];
     updateCart();
-}
-
-document.getElementById('checkout-btn').addEventListener('click', () => {
-    alert('Checkout functionality is not implemented in this demo.');
+    document.getElementById('products').style.display = 'block';
+    document.getElementById('cart').style.display = 'block';
+    document.getElementById('checkout').style.display = 'none';
 });

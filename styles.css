@@ -31,7 +31,7 @@ main {
     padding: 20px;
 }
 
-.product, #cart-items {
+.product {
     border: 1px solid #ccc;
     padding: 10px;
     margin: 10px;
@@ -40,11 +40,11 @@ main {
     width: calc(33.333% - 22px);
 }
 
-.product img, #cart-items img {
+.product img {
     width: 100%;
 }
 
-.product h3, .product p, #cart-items h3, #cart-items p {
+.product h3, .product p {
     margin: 0;
     padding: 5px 0;
 }
@@ -54,4 +54,14 @@ footer {
     color: white;
     text-align: center;
     padding: 1em 0;
+}
+
+#cartItems {
+    margin-bottom: 20px;
+}
+
+#checkoutForm input {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: calc(100% - 12px);
 }
